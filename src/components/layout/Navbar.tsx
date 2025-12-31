@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Menu, PlusCircle, User, X } from 'lucide-react';
+import logo1 from '../../assets/1.png';
 
 export const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -11,9 +12,11 @@ export const Navbar: React.FC = () => {
                 <div className="flex justify-between items-center h-20">
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-3 group">
-                        <div className="h-12 w-12 bg-gradient-to-br from-indigo-600 to-blue-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
-                            SC
-                        </div>
+                        <img 
+                            src={logo1} 
+                            alt="Sarmiento Clasificados" 
+                            className="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                        />
                         <div className="hidden sm:flex flex-col">
                             <span className="text-xl font-bold text-gray-900 leading-none tracking-tight group-hover:text-indigo-600 transition-colors">
                                 Sarmiento

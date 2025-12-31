@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo2 from '../../assets/2.png';
 
 export const Footer: React.FC = () => {
     return (
@@ -8,9 +9,11 @@ export const Footer: React.FC = () => {
                 <div className="grid md:grid-cols-4 gap-8 mb-8">
                     <div className="col-span-1 md:col-span-2 space-y-4">
                         <Link to="/" className="flex items-center gap-2">
-                            <div className="h-8 w-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                                SC
-                            </div>
+                            <img 
+                                src={logo2} 
+                                alt="Sarmiento Clasificados" 
+                                className="h-10 w-auto object-contain"
+                            />
                             <span className="text-lg font-bold text-gray-900">
                                 Sarmiento Clasificados
                             </span>
