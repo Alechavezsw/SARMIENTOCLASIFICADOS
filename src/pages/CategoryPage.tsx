@@ -15,7 +15,7 @@ export const CategoryPage: React.FC = () => {
     if (categoriesLoading) {
         return (
             <div className="min-h-[50vh] flex flex-col items-center justify-center text-center space-y-4">
-                <Loader className="w-8 h-8 animate-spin text-indigo-600" />
+                <Loader className="w-8 h-8 animate-spin text-green-600" />
                 <p className="text-gray-500">Cargando categoría...</p>
             </div>
         );
@@ -28,7 +28,7 @@ export const CategoryPage: React.FC = () => {
                     <Search className="w-8 h-8" />
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900">Categoría no encontrada</h2>
-                <Link to="/" className="text-indigo-600 font-semibold hover:underline">
+                <Link to="/" className="text-green-600 font-semibold hover:underline">
                     Volver al inicio
                 </Link>
             </div>
@@ -47,7 +47,7 @@ export const CategoryPage: React.FC = () => {
                 bg-opacity-30 border border-gray-100
             `}>
                 <div className="relative z-10 max-w-2xl">
-                    <Link to="/" className="inline-flex items-center text-sm font-medium text-gray-500 hover:text-indigo-600 mb-4 transition-colors">
+                    <Link to="/" className="inline-flex items-center text-sm font-medium text-gray-500 hover:text-green-600 mb-4 transition-colors">
                         <ArrowLeft className="w-4 h-4 mr-1" />
                         Volver al inicio
                     </Link>
@@ -67,7 +67,7 @@ export const CategoryPage: React.FC = () => {
             <div className="min-h-[400px]">
                 {adsLoading ? (
                     <div className="flex items-center justify-center py-20">
-                        <Loader className="w-8 h-8 animate-spin text-indigo-600" />
+                        <Loader className="w-8 h-8 animate-spin text-green-600" />
                     </div>
                 ) : ads.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -78,7 +78,7 @@ export const CategoryPage: React.FC = () => {
                 ) : (
                     <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-gray-200">
                         <div className="max-w-md mx-auto space-y-6">
-                            <div className="w-20 h-20 bg-indigo-50 rounded-full flex items-center justify-center mx-auto text-indigo-300">
+                            <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto text-green-300">
                                 <Search className="w-10 h-10" />
                             </div>
                             <div>
@@ -87,7 +87,7 @@ export const CategoryPage: React.FC = () => {
                             </div>
                             <Link
                                 to="/publicar"
-                                className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white rounded-full font-semibold hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200"
+                                className="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-full font-semibold hover:bg-green-700 transition-colors shadow-lg shadow-green-200"
                             >
                                 <PlusCircle className="w-5 h-5 mr-2" />
                                 Publicar Anuncio Ahora

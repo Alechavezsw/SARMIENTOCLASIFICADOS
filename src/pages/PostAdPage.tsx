@@ -114,9 +114,9 @@ export const PostAdPage: React.FC = () => {
     return (
         <div className="max-w-2xl mx-auto">
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-6 text-white text-center">
+                <div className="bg-gradient-to-r from-green-600 to-green-700 p-6 text-white text-center">
                     <h1 className="text-2xl font-bold">Publicar Anuncio</h1>
-                    <p className="text-indigo-100 mt-1">Llega a miles de compradores en Sarmiento</p>
+                    <p className="text-green-100 mt-1">Llega a miles de compradores en Sarmiento</p>
                 </div>
 
                 <div className="p-8">
@@ -150,11 +150,11 @@ export const PostAdPage: React.FC = () => {
                                         </div>
                                     ) : (
                                         <div className="flex flex-col items-center gap-3">
-                                            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-indigo-500 shadow-sm group-hover:scale-110 transition-transform">
+                                            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-green-500 shadow-sm group-hover:scale-110 transition-transform">
                                                 <Camera className="w-6 h-6" />
                                             </div>
                                             <div className="text-gray-500">
-                                                <span className="font-semibold text-indigo-600">Subir fotos</span> o arrastrar y soltar
+                                                <span className="font-semibold text-green-600">Subir fotos</span> o arrastrar y soltar
                                             </div>
                                             <p className="text-xs text-gray-400">PNG, JPG hasta 5MB</p>
                                         </div>
@@ -175,7 +175,7 @@ export const PostAdPage: React.FC = () => {
                                     <label className="text-sm font-semibold text-gray-700">Categoría *</label>
                                     {categoriesLoading ? (
                                         <div className="flex items-center justify-center py-4">
-                                            <Loader className="w-5 h-5 animate-spin text-indigo-600" />
+                                            <Loader className="w-5 h-5 animate-spin text-green-600" />
                                         </div>
                                     ) : (
                                         <select
@@ -183,7 +183,7 @@ export const PostAdPage: React.FC = () => {
                                             value={formData.category_id}
                                             onChange={handleChange}
                                             required
-                                            className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                                            className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none"
                                         >
                                             <option value="">Seleccionar...</option>
                                             {categories.map(cat => (
@@ -202,7 +202,7 @@ export const PostAdPage: React.FC = () => {
                                         onChange={handleChange}
                                         placeholder="Ej. Media Agua"
                                         required
-                                        className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                                        className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none"
                                     />
                                 </div>
                             </div>
@@ -216,7 +216,7 @@ export const PostAdPage: React.FC = () => {
                                     onChange={handleChange}
                                     placeholder="Ej. Vendo Bicicleta Mountain Bike R29"
                                     required
-                                    className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                                    className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none"
                                 />
                             </div>
 
@@ -227,7 +227,7 @@ export const PostAdPage: React.FC = () => {
                                         name="currency"
                                         value={formData.currency}
                                         onChange={handleChange}
-                                        className="w-24 px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                                        className="w-24 px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none"
                                     >
                                         <option value="ARS">ARS $</option>
                                         <option value="USD">USD u$s</option>
@@ -241,7 +241,7 @@ export const PostAdPage: React.FC = () => {
                                         required
                                         min="0"
                                         step="0.01"
-                                        className="flex-1 px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                                        className="flex-1 px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none"
                                     />
                                 </div>
                             </div>
@@ -255,7 +255,7 @@ export const PostAdPage: React.FC = () => {
                                     rows={5}
                                     placeholder="Describe tu producto con detalle..."
                                     required
-                                    className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none resize-none"
+                                    className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none resize-none"
                                 />
                             </div>
 
@@ -271,7 +271,7 @@ export const PostAdPage: React.FC = () => {
                                             value={formData.seller_name}
                                             onChange={handleChange}
                                             placeholder="Tu nombre"
-                                            className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                                            className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none"
                                         />
                                     </div>
                                     <div className="space-y-2">
@@ -282,7 +282,7 @@ export const PostAdPage: React.FC = () => {
                                             value={formData.seller_email}
                                             onChange={handleChange}
                                             placeholder="tu@email.com"
-                                            className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                                            className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none"
                                         />
                                     </div>
                                     <div className="space-y-2 md:col-span-2">
@@ -293,7 +293,7 @@ export const PostAdPage: React.FC = () => {
                                             value={formData.seller_phone}
                                             onChange={handleChange}
                                             placeholder="264 123 4567"
-                                            className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                                            className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none"
                                         />
                                     </div>
                                 </div>

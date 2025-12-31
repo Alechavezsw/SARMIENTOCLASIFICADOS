@@ -47,7 +47,7 @@ export class ErrorBoundary extends Component<Props, State> {
                                 this.setState({ hasError: false, error: null });
                                 window.location.href = '/';
                             }}
-                            className="px-6 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
+                            className="px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors"
                         >
                             Volver al inicio
                         </button>

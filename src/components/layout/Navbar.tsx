@@ -7,7 +7,7 @@ export const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     return (
-        <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-indigo-100 transition-all">
+        <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-green-100 transition-all">
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-center h-20">
                     {/* Logo */}
@@ -16,7 +16,7 @@ export const Navbar: React.FC = () => {
                             <img 
                                 src={logo1} 
                                 alt="Sarmiento Clasificados" 
-                                className="h-16 md:h-20 lg:h-24 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                                className="h-20 md:h-28 lg:h-32 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
                             />
                         </div>
                     </Link>
@@ -27,19 +27,19 @@ export const Navbar: React.FC = () => {
                             <input
                                 type="text"
                                 placeholder="Buscar en Sarmiento..."
-                                className="w-full pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm"
+                                className="w-full pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full focus:bg-white focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition-all text-sm"
                             />
                             <Search className="w-4 h-4 text-gray-400 absolute left-4 top-3.5" />
                         </div>
 
                         <div className="h-8 w-px bg-gray-200 mx-2"></div>
 
-                        <Link to="/publicar" className="flex items-center gap-2 bg-indigo-50 text-indigo-700 px-5 py-2.5 rounded-full font-semibold hover:bg-indigo-100 transition-colors">
+                        <Link to="/publicar" className="flex items-center gap-2 bg-green-50 text-green-700 px-5 py-2.5 rounded-full font-semibold hover:bg-green-100 transition-colors">
                             <PlusCircle className="w-5 h-5" />
                             <span>Publicar</span>
                         </Link>
 
-                        <Link to="/login" className="flex items-center gap-2 text-gray-600 hover:text-indigo-600 font-medium transition-colors px-3 py-2">
+                        <Link to="/login" className="flex items-center gap-2 text-gray-600 hover:text-green-600 font-medium transition-colors px-3 py-2">
                             <User className="w-5 h-5" />
                             <span>Ingresar</span>
                         </Link>
@@ -68,11 +68,11 @@ export const Navbar: React.FC = () => {
                             <input
                                 type="text"
                                 placeholder="¿Qué buscas hoy?"
-                                className="w-full pl-4 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                                className="w-full pl-4 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500/20 focus:border-green-500"
                             />
                             <Link
                                 to="/publicar"
-                                className="flex items-center gap-3 text-white bg-indigo-600 p-3 rounded-xl justify-center"
+                                className="flex items-center gap-3 text-white bg-green-600 p-3 rounded-xl justify-center"
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 <PlusCircle className="w-5 h-5" />

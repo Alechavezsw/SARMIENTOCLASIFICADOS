@@ -13,7 +13,7 @@ export const AdDetailPage: React.FC = () => {
     if (loading) {
         return (
             <div className="min-h-[50vh] flex flex-col items-center justify-center space-y-4">
-                <Loader className="w-8 h-8 animate-spin text-indigo-600" />
+                <Loader className="w-8 h-8 animate-spin text-green-600" />
                 <p className="text-gray-500">Cargando anuncio...</p>
             </div>
         );
@@ -23,7 +23,7 @@ export const AdDetailPage: React.FC = () => {
         return (
             <div className="min-h-[50vh] flex flex-col items-center justify-center space-y-4">
                 <h2 className="text-2xl font-bold text-gray-900">Anuncio no encontrado</h2>
-                <Link to="/" className="text-indigo-600 hover:underline">Ir al inicio</Link>
+                <Link to="/" className="text-green-600 hover:underline">Ir al inicio</Link>
             </div>
         );
     }
@@ -34,9 +34,9 @@ export const AdDetailPage: React.FC = () => {
         <div className="max-w-6xl mx-auto pb-12 animate-in fade-in duration-500">
             {/* Breadcrumbs */}
             <nav className="mb-6 flex items-center gap-2 text-sm text-gray-500 overflow-x-auto whitespace-nowrap pb-2">
-                <Link to="/" className="hover:text-indigo-600 transition-colors">Inicio</Link>
+                <Link to="/" className="hover:text-green-600 transition-colors">Inicio</Link>
                 <span className="text-gray-300">/</span>
-                <Link to={`/categoria/${category?.slug}`} className="hover:text-indigo-600 transition-colors">{category?.name}</Link>
+                <Link to={`/categoria/${category?.slug}`} className="hover:text-green-600 transition-colors">{category?.name}</Link>
                 <span className="text-gray-300">/</span>
                 <span className="text-gray-900 font-medium truncate">{ad.title}</span>
             </nav>
@@ -59,7 +59,7 @@ export const AdDetailPage: React.FC = () => {
                     {/* Description Card */}
                     <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm">
                         <h2 className="text-2xl font-bold text-gray-900 mb-6">Descripción</h2>
-                        <div className="prose prose-indigo max-w-none text-gray-600 leading-relaxed whitespace-pre-line">
+                        <div className="prose prose-green max-w-none text-gray-600 leading-relaxed whitespace-pre-line">
                             {ad.description}
                         </div>
 
@@ -67,14 +67,14 @@ export const AdDetailPage: React.FC = () => {
                             <div className="space-y-1">
                                 <span className="text-sm text-gray-500">Ubicación</span>
                                 <div className="flex items-center font-medium text-gray-900">
-                                    <MapPin className="w-4 h-4 mr-1 text-indigo-500" />
+                                    <MapPin className="w-4 h-4 mr-1 text-green-500" />
                                     {ad.location}
                                 </div>
                             </div>
                             <div className="space-y-1">
                                 <span className="text-sm text-gray-500">Publicado</span>
                                 <div className="flex items-center font-medium text-gray-900">
-                                    <Calendar className="w-4 h-4 mr-1 text-indigo-500" />
+                                    <Calendar className="w-4 h-4 mr-1 text-green-500" />
                                     {new Date(ad.created_at || ad.createdAt || '').toLocaleDateString('es-AR')}
                                 </div>
                             </div>
@@ -91,17 +91,17 @@ export const AdDetailPage: React.FC = () => {
 
                 {/* Right Column: Sticky Sidebar */}
                 <div className="space-y-6">
-                    <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-xl shadow-indigo-100/50 sticky top-24">
+                    <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-xl shadow-green-100/50 sticky top-24">
                         <div className="mb-8">
                             <h1 className="text-2xl font-bold text-gray-900 mb-2 leading-tight">{ad.title}</h1>
-                            <p className="text-4xl font-extrabold text-indigo-600 tracking-tight mt-4">
+                            <p className="text-4xl font-extrabold text-green-600 tracking-tight mt-4">
                                 {ad.currency === 'ARS' ? '$' : 'u$s'} {Number(ad.price).toLocaleString('es-AR')}
                             </p>
                         </div>
 
                         {/* Seller Info */}
                         <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl mb-6">
-                            <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold text-lg">
+                            <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-lg">
                                 {(ad.seller_name || ad.sellerName || 'A').charAt(0).toUpperCase()}
                             </div>
                             <div>
@@ -111,7 +111,7 @@ export const AdDetailPage: React.FC = () => {
                         </div>
 
                         <div className="flex flex-col gap-3">
-                            <Button fullWidth size="lg" className="rounded-xl py-4 text-lg shadow-lg shadow-indigo-200">
+                            <Button fullWidth size="lg" className="rounded-xl py-4 text-lg shadow-lg shadow-green-200">
                                 <MessageCircle className="w-5 h-5 mr-2" />
                                 Contactar Vendedor
                             </Button>

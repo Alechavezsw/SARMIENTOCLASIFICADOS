@@ -38,7 +38,7 @@ export const AdCard: React.FC<AdCardProps> = ({ ad }) => {
 
                 <div className="p-4 flex flex-col flex-grow">
                     <div className="mb-2">
-                        <h3 className="font-semibold text-gray-900 text-lg line-clamp-1 group-hover:text-indigo-600 transition-colors">
+                        <h3 className="font-semibold text-gray-900 text-lg line-clamp-1 group-hover:text-green-600 transition-colors">
                             {ad.title}
                         </h3>
                         <p className="text-2xl font-bold text-gray-900 mt-1">
