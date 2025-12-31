@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Menu, PlusCircle, User, X } from 'lucide-react';
 import logo1 from '../../assets/1.png';
@@ -6,6 +6,43 @@ import { AdminLink } from './AdminLink';
 
 export const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
+    // Cerrar menú al hacer clic fuera
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                isMenuOpen &&
+                menuRef.current &&
+                !menuRef.current.contains(event.target as Node) &&
+                buttonRef.current &&
+                !buttonRef.current.contains(event.target as Node)
+            ) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        // Cerrar menú con ESC
+        const handleEscape = (event: KeyboardEvent) => {
+            if (event.key === 'Escape' && isMenuOpen) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        if (isMenuOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+            document.addEventListener('keydown', handleEscape);
+            // Prevenir scroll del body cuando el menú está abierto
+            document.body.style.overflow = 'hidden';
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('keydown', handleEscape);
+            document.body.style.overflow = 'unset';
+        };
+    }, [isMenuOpen]);
 
     return (
         <nav className="sticky top-0 z-50 bg-white/98 backdrop-blur-xl border-b border-green-100/60 shadow-md transition-all">
@@ -84,18 +121,32 @@ export const Navbar: React.FC = () => {
                         </button>
 
                         <button
+                            ref={buttonRef}
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                            className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors relative z-50"
+                            aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                            aria-expanded={isMenuOpen}
                         >
-                            {isMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
+                            {isMenuOpen ? (
+                                <X className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 rotate-0" />
+                            ) : (
+                                <Menu className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300" />
+                            )}
                         </button>
                     </div>
                 </div>
 
                 {/* Mobile/Tablet Menu */}
                 {isMenuOpen && (
-                    <div className="lg:hidden pb-6 pt-4 border-t border-gray-100 animate-in slide-in-from-top-2 bg-white/98 backdrop-blur-xl">
-                        <div className="flex flex-col space-y-3 font-medium px-2">
+                    <div 
+                        ref={menuRef}
+                        className="lg:hidden fixed inset-0 top-24 sm:top-28 md:top-32 bg-white/98 backdrop-blur-xl z-40 overflow-y-auto"
+                        style={{
+                            animation: 'slideDown 0.3s ease-out',
+                        }}
+                    >
+                        <div className="pb-6 pt-4 border-t border-gray-100">
+                            <div className="flex flex-col space-y-3 font-medium px-4 sm:px-6">
                             <input
                                 type="text"
                                 placeholder="¿Qué buscas hoy?"
@@ -169,10 +220,23 @@ export const Navbar: React.FC = () => {
                                 <User className="w-5 h-5" />
                                 Ingresar a mi cuenta
                             </Link>
+                            </div>
                         </div>
                     </div>
                 )}
             </div>
+            <style>{`
+                @keyframes slideDown {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `}</style>
         </nav>
     );
 };
