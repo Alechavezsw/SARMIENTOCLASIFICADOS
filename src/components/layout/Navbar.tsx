@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Menu, PlusCircle, User, X } from 'lucide-react';
+import { Search, Menu, PlusCircle, User, X, ChevronDown } from 'lucide-react';
 import logo1 from '../../assets/1.png';
 import { AdminLink } from './AdminLink';
 
@@ -62,6 +62,7 @@ export const Navbar: React.FC = () => {
 
                     {/* Desktop Search & Nav */}
                     <div className="hidden lg:flex items-center space-x-3 xl:space-x-5 flex-1 justify-end ml-6 min-w-0">
+                        {/* Enlaces principales visibles */}
                         <Link to="/noticias" className="flex items-center gap-2 text-gray-700 hover:text-green-600 font-semibold transition-colors px-3 xl:px-4 py-2.5 whitespace-nowrap text-sm xl:text-base hover:bg-green-50 rounded-lg">
                             <span>Noticias</span>
                         </Link>
@@ -74,23 +75,34 @@ export const Navbar: React.FC = () => {
                             <span>Colectivos</span>
                         </Link>
 
-                        <Link to="/radio" className="flex items-center gap-2 text-gray-700 hover:text-purple-600 font-semibold transition-colors px-3 xl:px-4 py-2.5 whitespace-nowrap text-sm xl:text-base hover:bg-purple-50 rounded-lg">
-                            <span>Radio SW</span>
-                        </Link>
-
-                        <Link to="/farmacias" className="flex items-center gap-2 text-gray-700 hover:text-green-600 font-semibold transition-colors px-3 xl:px-4 py-2.5 whitespace-nowrap text-sm xl:text-base hover:bg-green-50 rounded-lg">
-                            <span>Farmacias</span>
-                        </Link>
-
-                        <Link to="/telefonos-utiles" className="flex items-center gap-2 text-gray-700 hover:text-blue-600 font-semibold transition-colors px-3 xl:px-4 py-2.5 whitespace-nowrap text-sm xl:text-base hover:bg-blue-50 rounded-lg">
-                            <span>Teléfonos</span>
-                        </Link>
-
-                        <Link to="/directorio-comercial" className="flex items-center gap-2 text-gray-700 hover:text-orange-600 font-semibold transition-colors px-3 xl:px-4 py-2.5 whitespace-nowrap text-sm xl:text-base hover:bg-orange-50 rounded-lg">
-                            <span>Directorio</span>
-                        </Link>
-
-                        <AdminLink />
+                        {/* Menú toggle para más opciones */}
+                        <div className="relative group">
+                            <button className="flex items-center gap-2 text-gray-700 hover:text-green-600 font-semibold transition-colors px-3 xl:px-4 py-2.5 whitespace-nowrap text-sm xl:text-base hover:bg-green-50 rounded-lg">
+                                <span>Más</span>
+                                <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+                            </button>
+                            {/* Dropdown Menu */}
+                            <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                <div className="py-2">
+                                    <Link to="/radio" className="flex items-center gap-3 text-gray-700 hover:bg-purple-50 px-4 py-3 font-semibold transition-colors">
+                                        <span>Radio SW</span>
+                                    </Link>
+                                    <Link to="/farmacias" className="flex items-center gap-3 text-gray-700 hover:bg-green-50 px-4 py-3 font-semibold transition-colors">
+                                        <span>Farmacias</span>
+                                    </Link>
+                                    <Link to="/telefonos-utiles" className="flex items-center gap-3 text-gray-700 hover:bg-blue-50 px-4 py-3 font-semibold transition-colors">
+                                        <span>Teléfonos Útiles</span>
+                                    </Link>
+                                    <Link to="/directorio-comercial" className="flex items-center gap-3 text-gray-700 hover:bg-orange-50 px-4 py-3 font-semibold transition-colors">
+                                        <span>Directorio Comercial</span>
+                                    </Link>
+                                    <div className="border-t border-gray-200 my-1"></div>
+                                    <div className="px-4">
+                                        <AdminLink />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
                         <div className="max-w-xs xl:max-w-md w-full relative">
                             <input
