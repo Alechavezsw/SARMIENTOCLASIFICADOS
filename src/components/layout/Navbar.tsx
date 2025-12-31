@@ -45,7 +45,8 @@ export const Navbar: React.FC = () => {
     }, [isMenuOpen]);
 
     return (
-        <nav className="sticky top-0 z-50 bg-white/98 backdrop-blur-xl border-b border-green-100/60 shadow-md transition-all">
+        <>
+            <nav className="sticky top-0 z-50 bg-white/98 backdrop-blur-xl border-b border-green-100/60 shadow-md transition-all relative">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
                 <div className="flex justify-between items-center h-24 sm:h-28 md:h-32 lg:h-36">
                     {/* Logo */}
@@ -138,12 +139,22 @@ export const Navbar: React.FC = () => {
 
                 {/* Mobile/Tablet Menu */}
                 {isMenuOpen && (
-                    <div 
-                        ref={menuRef}
-                        className="lg:hidden fixed inset-0 top-24 sm:top-28 md:top-32 bg-white/98 backdrop-blur-xl z-40 overflow-y-auto animate-in slide-in-from-top-2"
-                    >
-                        <div className="pb-6 pt-4 border-t border-gray-100">
-                            <div className="flex flex-col space-y-3 font-medium px-4 sm:px-6">
+                    <>
+                        {/* Overlay oscuro */}
+                        <div 
+                            className="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-[45]"
+                            onClick={() => setIsMenuOpen(false)}
+                        />
+                        {/* Menú */}
+                        <div 
+                            ref={menuRef}
+                            className="lg:hidden fixed inset-0 top-24 sm:top-28 md:top-32 bg-white z-[50] overflow-y-auto shadow-2xl"
+                            style={{
+                                animation: 'slideDown 0.3s ease-out',
+                            }}
+                        >
+                            <div className="pb-6 pt-4 border-t border-gray-100">
+                                <div className="flex flex-col space-y-3 font-medium px-4 sm:px-6">
                             <input
                                 type="text"
                                 placeholder="¿Qué buscas hoy?"
@@ -217,11 +228,25 @@ export const Navbar: React.FC = () => {
                                 <User className="w-5 h-5" />
                                 Ingresar a mi cuenta
                             </Link>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <style>{`
+                            @keyframes slideDown {
+                                from {
+                                    opacity: 0;
+                                    transform: translateY(-20px);
+                                }
+                                to {
+                                    opacity: 1;
+                                    transform: translateY(0);
+                                }
+                            }
+                        `}</style>
+                    </>
                 )}
             </div>
         </nav>
+        </>
     );
 };
