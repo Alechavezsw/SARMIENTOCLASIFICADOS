@@ -38,6 +38,10 @@ export const Navbar: React.FC = () => {
                         <Link to="/radio" className="flex items-center gap-2 text-gray-700 hover:text-purple-600 font-semibold transition-colors px-3 xl:px-4 py-2.5 whitespace-nowrap text-sm xl:text-base hover:bg-purple-50 rounded-lg">
                             <span>Radio SW</span>
                         </Link>
+
+                        <Link to="/farmacias" className="flex items-center gap-2 text-gray-700 hover:text-green-600 font-semibold transition-colors px-3 xl:px-4 py-2.5 whitespace-nowrap text-sm xl:text-base hover:bg-green-50 rounded-lg">
+                            <span>Farmacias</span>
+                        </Link>
                         
                         <div className="max-w-xs xl:max-w-md w-full relative">
                             <input
@@ -113,6 +117,13 @@ export const Navbar: React.FC = () => {
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 Radio SW
+                            </Link>
+                            <Link
+                                to="/farmacias"
+                                className="flex items-center gap-3 text-gray-700 hover:bg-green-50 p-3.5 rounded-xl font-semibold transition-colors"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Farmacias
                             </Link>
                             <Link
                                 to="/publicar"
