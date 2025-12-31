@@ -1,17 +1,25 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { CATEGORIES, MOCK_ADS } from '../data/mockData';
+import { useCategories } from '../hooks/useCategories';
+import { useAds } from '../hooks/useAds';
 import { AdCard } from '../components/ads/AdCard';
-import { Search, ArrowLeft, PlusCircle } from 'lucide-react';
+import { Search, ArrowLeft, PlusCircle, Loader } from 'lucide-react';
 
 export const CategoryPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
-    const category = CATEGORIES.find(c => c.slug === slug);
+    const { categories, loading: categoriesLoading } = useCategories();
+    const { ads, loading: adsLoading } = useAds(slug);
+    
+    const category = categories.find(c => c.slug === slug);
 
-    const categoryAds = MOCK_ADS.filter(ad => {
-        if (!category) return false;
-        return ad.categoryId === category.id;
-    });
+    if (categoriesLoading) {
+        return (
+            <div className="min-h-[50vh] flex flex-col items-center justify-center text-center space-y-4">
+                <Loader className="w-8 h-8 animate-spin text-indigo-600" />
+                <p className="text-gray-500">Cargando categoría...</p>
+            </div>
+        );
+    }
 
     if (!category) {
         return (
@@ -57,9 +65,13 @@ export const CategoryPage: React.FC = () => {
 
             {/* Grid de Anuncios */}
             <div className="min-h-[400px]">
-                {categoryAds.length > 0 ? (
+                {adsLoading ? (
+                    <div className="flex items-center justify-center py-20">
+                        <Loader className="w-8 h-8 animate-spin text-indigo-600" />
+                    </div>
+                ) : ads.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {categoryAds.map(ad => (
+                        {ads.map(ad => (
                             <AdCard key={ad.id} ad={ad} />
                         ))}
                     </div>

@@ -8,12 +8,36 @@ import {
     Shirt,
     Briefcase,
     Search,
-    ArrowRight
+    ArrowRight,
+    Utensils,
+    Activity,
+    GraduationCap,
+    Cpu,
+    Tag,
+    Gamepad2,
+    Heart,
+    Building,
+    Music,
+    Gem,
+    ToyBrick,
+    Book,
+    Wrench,
+    Sparkles,
+    ShoppingCart,
+    Camera,
+    Tent,
+    Microwave,
+    Radio,
+    PartyPopper,
+    Baby,
+    Palette,
+    Loader
 } from 'lucide-react';
-import { CATEGORIES, MOCK_ADS } from '../data/mockData';
+import { useCategories } from '../hooks/useCategories';
+import { useAds } from '../hooks/useAds';
 import { AdCard } from '../components/ads/AdCard';
 
-// Mapa de iconos dinámico basado en los strings de mockData (o slugs si preferimos)
+// Mapa de iconos dinámico basado en los iconos de la base de datos
 const IconMap: Record<string, React.ElementType> = {
     'Car': Car,
     'Home': HomeIcon,
@@ -21,9 +45,33 @@ const IconMap: Record<string, React.ElementType> = {
     'Armchair': Armchair,
     'Shirt': Shirt,
     'Briefcase': Briefcase,
+    'Utensils': Utensils,
+    'Activity': Activity,
+    'GraduationCap': GraduationCap,
+    'Cpu': Cpu,
+    'Tag': Tag,
+    'Gamepad2': Gamepad2,
+    'Heart': Heart,
+    'Building': Building,
+    'Music': Music,
+    'Gem': Gem,
+    'ToyBrick': ToyBrick,
+    'Book': Book,
+    'Wrench': Wrench,
+    'Sparkles': Sparkles,
+    'ShoppingCart': ShoppingCart,
+    'Camera': Camera,
+    'Tent': Tent,
+    'Microwave': Microwave,
+    'Radio': Radio,
+    'PartyPopper': PartyPopper,
+    'Baby': Baby,
+    'Palette': Palette,
 };
 
 export const Home: React.FC = () => {
+    const { categories, loading: categoriesLoading } = useCategories();
+    const { ads, loading: adsLoading } = useAds();
     return (
         <div className="space-y-16 pb-12">
             {/* Hero Section */}
@@ -69,40 +117,41 @@ export const Home: React.FC = () => {
                     <span className="text-sm font-medium text-indigo-600 hover:text-indigo-700 cursor-pointer">Ver todas</span>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                    {CATEGORIES.map((cat) => {
-                        const Icon = cat.icon ? IconMap[cat.icon] : Search;
-                        return (
-                            <Link
-                                key={cat.id}
-                                to={`/categoria/${cat.slug}`}
-                                className={`
-                                    group flex flex-col items-center justify-center p-6 rounded-2xl 
-                                    bg-white border border-gray-100 shadow-sm 
-                                    hover:shadow-md hover:border-indigo-100 transition-all duration-300
-                                `}
-                            >
-                                <div className={`
-                                    w-14 h-14 rounded-full flex items-center justify-center mb-4 
-                                    ${cat.color.replace('text-', 'bg-').replace('100', '100')} 
-                                    group-hover:scale-110 transition-transform duration-300
-                                `}>
-                                    {/* Nota: Reemplazamos las clases de color de texto extraídas del mockData para usarlas como fondo suave si se desea, 
-                                        o usamos el color tal cual viene. 
-                                        El mockData trae strings completos tipo "bg-blue-100 text-blue-600".
-                                        Vamos a parsear eso o simplemente usar el color de fondo definido.
-                                    */}
-                                    <div className={`p-3 rounded-full ${cat.color} bg-opacity-50`}>
-                                        <Icon className="w-6 h-6" />
+                {categoriesLoading ? (
+                    <div className="flex items-center justify-center py-12">
+                        <Loader className="w-6 h-6 animate-spin text-indigo-600" />
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                        {categories.slice(0, 12).map((cat) => {
+                            const Icon = cat.icon ? IconMap[cat.icon] : Search;
+                            return (
+                                <Link
+                                    key={cat.id}
+                                    to={`/categoria/${cat.slug}`}
+                                    className={`
+                                        group flex flex-col items-center justify-center p-6 rounded-2xl 
+                                        bg-white border border-gray-100 shadow-sm 
+                                        hover:shadow-md hover:border-indigo-100 transition-all duration-300
+                                    `}
+                                >
+                                    <div className={`
+                                        w-14 h-14 rounded-full flex items-center justify-center mb-4 
+                                        ${cat.color.split(' ')[0]} 
+                                        group-hover:scale-110 transition-transform duration-300
+                                    `}>
+                                        <div className={`p-3 rounded-full ${cat.color} bg-opacity-50`}>
+                                            <Icon className="w-6 h-6" />
+                                        </div>
                                     </div>
-                                </div>
-                                <span className="font-semibold text-gray-700 group-hover:text-indigo-600 transition-colors">
-                                    {cat.name}
-                                </span>
-                            </Link>
-                        );
-                    })}
-                </div>
+                                    <span className="font-semibold text-gray-700 group-hover:text-indigo-600 transition-colors text-center text-sm">
+                                        {cat.name}
+                                    </span>
+                                </Link>
+                            );
+                        })}
+                    </div>
+                )}
             </section>
 
             {/* Featured Ads Section */}
@@ -117,11 +166,21 @@ export const Home: React.FC = () => {
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {MOCK_ADS.slice(0, 4).map((ad) => (
-                        <AdCard key={ad.id} ad={ad} />
-                    ))}
-                </div>
+                {adsLoading ? (
+                    <div className="flex items-center justify-center py-12">
+                        <Loader className="w-6 h-6 animate-spin text-indigo-600" />
+                    </div>
+                ) : ads.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {ads.slice(0, 4).map((ad) => (
+                            <AdCard key={ad.id} ad={ad} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-12 text-gray-500">
+                        <p>No hay anuncios disponibles aún.</p>
+                    </div>
+                )}
 
                 <div className="mt-8 text-center sm:hidden">
                     <Link to="/categoria/todos" className="inline-flex items-center text-indigo-600 font-semibold hover:text-indigo-800 transition-colors">

@@ -1,21 +1,35 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { MapPin, Calendar, Share2, Heart, MessageCircle, ShieldCheck } from 'lucide-react';
-import { MOCK_ADS, CATEGORIES } from '../data/mockData';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { MapPin, Calendar, Share2, Heart, MessageCircle, ShieldCheck, Loader } from 'lucide-react';
+import { useAd } from '../hooks/useAds';
+import { useCategories } from '../hooks/useCategories';
 import { Button } from '../components/ui/Button';
 
 export const AdDetailPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-    const ad = MOCK_ADS.find(a => a.id === id);
+    const { ad, loading, error } = useAd(id || '');
+    const { categories } = useCategories();
+    const navigate = useNavigate();
 
-    if (!ad) return (
-        <div className="min-h-[50vh] flex flex-col items-center justify-center space-y-4">
-            <h2 className="text-2xl font-bold text-gray-900">Anuncio no encontrado</h2>
-            <Link to="/" className="text-indigo-600 hover:underline">Ir al inicio</Link>
-        </div>
-    );
+    if (loading) {
+        return (
+            <div className="min-h-[50vh] flex flex-col items-center justify-center space-y-4">
+                <Loader className="w-8 h-8 animate-spin text-indigo-600" />
+                <p className="text-gray-500">Cargando anuncio...</p>
+            </div>
+        );
+    }
 
-    const category = CATEGORIES.find(c => c.id === ad.categoryId);
+    if (error || !ad) {
+        return (
+            <div className="min-h-[50vh] flex flex-col items-center justify-center space-y-4">
+                <h2 className="text-2xl font-bold text-gray-900">Anuncio no encontrado</h2>
+                <Link to="/" className="text-indigo-600 hover:underline">Ir al inicio</Link>
+            </div>
+        );
+    }
+
+    const category = categories.find(c => c.id === ad.category_id);
 
     return (
         <div className="max-w-6xl mx-auto pb-12 animate-in fade-in duration-500">
@@ -34,7 +48,7 @@ export const AdDetailPage: React.FC = () => {
                     {/* Main Image */}
                     <div className="aspect-[4/3] bg-gray-100 rounded-3xl overflow-hidden shadow-sm relative group">
                         <img
-                            src={ad.image}
+                            src={ad.image || ad.image_url || 'https://via.placeholder.com/500x400?text=Sin+imagen'}
                             alt={ad.title}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
@@ -62,7 +76,7 @@ export const AdDetailPage: React.FC = () => {
                                 <span className="text-sm text-gray-500">Publicado</span>
                                 <div className="flex items-center font-medium text-gray-900">
                                     <Calendar className="w-4 h-4 mr-1 text-indigo-500" />
-                                    {new Date(ad.createdAt).toLocaleDateString()}
+                                    {new Date(ad.created_at || ad.createdAt || '').toLocaleDateString('es-AR')}
                                 </div>
                             </div>
                             <div className="space-y-1">
@@ -82,18 +96,18 @@ export const AdDetailPage: React.FC = () => {
                         <div className="mb-8">
                             <h1 className="text-2xl font-bold text-gray-900 mb-2 leading-tight">{ad.title}</h1>
                             <p className="text-4xl font-extrabold text-indigo-600 tracking-tight mt-4">
-                                {ad.currency} {ad.price.toLocaleString('es-AR')}
+                                {ad.currency === 'ARS' ? '$' : 'u$s'} {Number(ad.price).toLocaleString('es-AR')}
                             </p>
                         </div>
 
                         {/* Seller Info */}
                         <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl mb-6">
                             <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold text-lg">
-                                {ad.sellerName.charAt(0)}
+                                {(ad.seller_name || ad.sellerName || 'A').charAt(0).toUpperCase()}
                             </div>
                             <div>
                                 <p className="text-sm text-gray-500">Vendido por</p>
-                                <p className="font-bold text-gray-900">{ad.sellerName}</p>
+                                <p className="font-bold text-gray-900">{ad.seller_name || ad.sellerName || 'Anónimo'}</p>
                             </div>
                         </div>
 

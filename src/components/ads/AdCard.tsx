@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 import { Card } from '../ui/Card';
-import type { Ad } from '../../data/mockData';
+import type { Ad } from '../../types';
 
 interface AdCardProps {
     ad: Ad;
@@ -26,13 +26,13 @@ export const AdCard: React.FC<AdCardProps> = ({ ad }) => {
             <Card hoverEffect className="p-0 overflow-hidden h-full flex flex-col group">
                 <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
                     <img
-                        src={ad.image}
+                        src={ad.image || ad.image_url || 'https://via.placeholder.com/400x300?text=Sin+imagen'}
                         alt={ad.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                     />
                     <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-semibold text-gray-700 shadow-sm">
-                        {formatDate(ad.createdAt)}
+                        {formatDate(ad.created_at || ad.createdAt || '')}
                     </div>
                 </div>
 
@@ -42,7 +42,7 @@ export const AdCard: React.FC<AdCardProps> = ({ ad }) => {
                             {ad.title}
                         </h3>
                         <p className="text-2xl font-bold text-gray-900 mt-1">
-                            {formatPrice(ad.price, ad.currency)}
+                            {formatPrice(Number(ad.price), ad.currency)}
                         </p>
                     </div>
 
