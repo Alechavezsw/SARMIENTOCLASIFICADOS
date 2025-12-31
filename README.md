@@ -69,6 +69,41 @@ npm run dev
 npm run build
 ```
 
+## Despliegue en Vercel
+
+### Opción 1: Desde el Dashboard de Vercel (Recomendado)
+
+1. Ve a [vercel.com](https://vercel.com) e inicia sesión
+2. Haz clic en "Add New Project"
+3. Importa tu repositorio de GitHub: `Alechavezsw/SARMIENTOCLASIFICADOS`
+4. Vercel detectará automáticamente que es un proyecto Vite
+5. **Configura las variables de entorno**:
+   - `VITE_SUPABASE_URL`: Tu URL de Supabase
+   - `VITE_SUPABASE_ANON_KEY`: Tu clave anónima de Supabase
+6. Haz clic en "Deploy"
+
+### Opción 2: Desde la CLI
+
+```bash
+# Instalar Vercel CLI
+npm i -g vercel
+
+# Desplegar
+vercel
+
+# Para producción
+vercel --prod
+```
+
+### Variables de Entorno en Vercel
+
+Asegúrate de configurar estas variables en el dashboard de Vercel:
+
+- `VITE_SUPABASE_URL`: https://zefnmyqcebaykvfnlmag.supabase.co
+- `VITE_SUPABASE_ANON_KEY`: Tu clave anónima de Supabase
+
+**Nota**: Las variables que empiezan con `VITE_` son expuestas al cliente, así que solo usa la clave anónima (anon key), nunca la service role key.
+
 ## Estructura de Base de Datos
 
 ### Tabla `categories`
