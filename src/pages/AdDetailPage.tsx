@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { MapPin, Calendar, Share2, Heart, MessageCircle, ShieldCheck, Loader } from 'lucide-react';
 import { useAd } from '../hooks/useAds';
 import { useCategories } from '../hooks/useCategories';
@@ -9,7 +9,6 @@ export const AdDetailPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const { ad, loading, error } = useAd(id || '');
     const { categories } = useCategories();
-    const navigate = useNavigate();
 
     if (loading) {
         return (
