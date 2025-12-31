@@ -100,6 +100,13 @@ export const Navbar: React.FC = () => {
                                 Colectivos
                             </Link>
                             <Link
+                                to="/radio"
+                                className="flex items-center gap-3 text-gray-700 hover:bg-purple-50 p-3.5 rounded-xl font-semibold transition-colors"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Radio SW
+                            </Link>
+                            <Link
                                 to="/publicar"
                                 className="flex items-center gap-3 text-white bg-gradient-to-r from-green-600 to-green-700 p-3.5 rounded-xl justify-center font-bold shadow-lg shadow-green-500/30"
                                 onClick={() => setIsMenuOpen(false)}

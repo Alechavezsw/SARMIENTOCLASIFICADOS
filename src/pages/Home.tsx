@@ -37,6 +37,7 @@ import { useCategories } from '../hooks/useCategories';
 import { useAds } from '../hooks/useAds';
 import { AdCard } from '../components/ads/AdCard';
 import { WeatherWidget } from '../components/WeatherWidget';
+import { RadioPlayer } from '../components/RadioPlayer';
 
 // Mapa de iconos dinámico basado en los iconos de la base de datos
 const IconMap: Record<string, React.ElementType> = {
@@ -111,7 +112,7 @@ export const Home: React.FC = () => {
                 </div>
             </section>
 
-            {/* Weather Section */}
+            {/* Weather & Radio Section */}
             <section>
                 <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
                     <div className="md:col-span-2">
@@ -131,6 +132,19 @@ export const Home: React.FC = () => {
                                 <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 group-hover:translate-x-1 transition-transform" />
                             </div>
                         </Link>
+                    </div>
+                </div>
+
+                {/* Radio Section */}
+                <div className="mb-16">
+                    <div className="flex items-center justify-between mb-6">
+                        <h2 className="text-2xl font-bold text-gray-900">Radio SW</h2>
+                        <Link to="/radio" className="text-sm font-semibold text-purple-600 hover:text-purple-700 transition-colors">
+                            Ver más →
+                        </Link>
+                    </div>
+                    <div className="max-w-md mx-auto md:mx-0">
+                        <RadioPlayer compact />
                     </div>
                 </div>
             </section>

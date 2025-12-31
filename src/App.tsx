@@ -8,6 +8,7 @@ import { PostAdPage } from './pages/PostAdPage';
 import { NewsPage } from './pages/NewsPage';
 import { WeatherPage } from './pages/WeatherPage';
 import { BusSchedulePage } from './pages/BusSchedulePage';
+import { RadioPage } from './pages/RadioPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/noticias" element={<NewsPage />} />
           <Route path="/clima" element={<WeatherPage />} />
           <Route path="/colectivos" element={<BusSchedulePage />} />
+          <Route path="/radio" element={<RadioPage />} />
           <Route path="*" element={<div className="text-center py-20">Página no encontrada</div>} />
         </Routes>
       </Layout>
