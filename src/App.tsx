@@ -10,6 +10,7 @@ import { WeatherPage } from './pages/WeatherPage';
 import { BusSchedulePage } from './pages/BusSchedulePage';
 import { RadioPage } from './pages/RadioPage';
 import { PharmaciesPage } from './pages/PharmaciesPage';
+import { UsefulPhonesPage } from './pages/UsefulPhonesPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/colectivos" element={<BusSchedulePage />} />
           <Route path="/radio" element={<RadioPage />} />
           <Route path="/farmacias" element={<PharmaciesPage />} />
+          <Route path="/telefonos-utiles" element={<UsefulPhonesPage />} />
           <Route path="*" element={<div className="text-center py-20">Página no encontrada</div>} />
         </Routes>
       </Layout>
