@@ -8,13 +8,15 @@ export const Footer: React.FC = () => {
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-4 gap-8 mb-8">
                     <div className="col-span-1 md:col-span-2 space-y-4">
-                        <Link to="/" className="flex items-center gap-2">
-                            <img 
-                                src={logo2} 
-                                alt="Sarmiento Clasificados" 
-                                className="h-10 w-auto object-contain"
-                            />
-                            <span className="text-lg font-bold text-gray-900">
+                        <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                            <div className="flex items-center justify-center">
+                                <img 
+                                    src={logo2} 
+                                    alt="Sarmiento Clasificados" 
+                                    className="h-12 md:h-14 w-auto object-contain max-w-[200px]"
+                                />
+                            </div>
+                            <span className="text-lg font-bold text-gray-900 hidden sm:inline-block">
                                 Sarmiento Clasificados
                             </span>
                         </Link>

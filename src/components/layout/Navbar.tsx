@@ -12,12 +12,14 @@ export const Navbar: React.FC = () => {
                 <div className="flex justify-between items-center h-20">
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-3 group">
-                        <img 
-                            src={logo1} 
-                            alt="Sarmiento Clasificados" 
-                            className="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <div className="hidden sm:flex flex-col">
+                        <div className="flex items-center justify-center p-1 rounded-lg group-hover:bg-gray-50 transition-colors">
+                            <img 
+                                src={logo1} 
+                                alt="Sarmiento Clasificados" 
+                                className="h-14 md:h-16 w-auto object-contain max-w-[180px] group-hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div className="hidden lg:flex flex-col">
                             <span className="text-xl font-bold text-gray-900 leading-none tracking-tight group-hover:text-indigo-600 transition-colors">
                                 Sarmiento
                             </span>
