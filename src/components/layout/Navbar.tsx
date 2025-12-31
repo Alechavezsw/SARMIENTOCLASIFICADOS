@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Menu, PlusCircle, User, X } from 'lucide-react';
 import logo1 from '../../assets/1.png';
+import { AdminLink } from './AdminLink';
 
 export const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -50,6 +51,8 @@ export const Navbar: React.FC = () => {
                         <Link to="/directorio-comercial" className="flex items-center gap-2 text-gray-700 hover:text-orange-600 font-semibold transition-colors px-3 xl:px-4 py-2.5 whitespace-nowrap text-sm xl:text-base hover:bg-orange-50 rounded-lg">
                             <span>Directorio</span>
                         </Link>
+
+                        <AdminLink />
                         
                         <div className="max-w-xs xl:max-w-md w-full relative">
                             <input
@@ -147,6 +150,9 @@ export const Navbar: React.FC = () => {
                             >
                                 Directorio Comercial
                             </Link>
+                            <div onClick={() => setIsMenuOpen(false)}>
+                                <AdminLink mobile />
+                            </div>
                             <Link
                                 to="/publicar"
                                 className="flex items-center gap-3 text-white bg-gradient-to-r from-green-600 to-green-700 p-3.5 rounded-xl justify-center font-bold shadow-lg shadow-green-500/30"

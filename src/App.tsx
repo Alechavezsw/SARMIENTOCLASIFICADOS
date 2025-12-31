@@ -12,6 +12,11 @@ import { RadioPage } from './pages/RadioPage';
 import { PharmaciesPage } from './pages/PharmaciesPage';
 import { UsefulPhonesPage } from './pages/UsefulPhonesPage';
 import { CommercialDirectoryPage } from './pages/CommercialDirectoryPage';
+import { ProtectedRoute } from './components/admin/ProtectedRoute';
+import { DashboardPage } from './pages/admin/DashboardPage';
+import { AdminCategoriesPage } from './pages/admin/AdminCategoriesPage';
+import { AdminAdsPage } from './pages/admin/AdminAdsPage';
+import { AdminBusinessesPage } from './pages/admin/AdminBusinessesPage';
 
 function App() {
   return (
@@ -30,6 +35,41 @@ function App() {
           <Route path="/farmacias" element={<PharmaciesPage />} />
           <Route path="/telefonos-utiles" element={<UsefulPhonesPage />} />
           <Route path="/directorio-comercial" element={<CommercialDirectoryPage />} />
+          
+          {/* Admin Routes */}
+          <Route 
+            path="/admin" 
+            element={
+              <ProtectedRoute requireAdmin>
+                <DashboardPage />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/admin/categorias" 
+            element={
+              <ProtectedRoute requireAdmin>
+                <AdminCategoriesPage />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/admin/anuncios" 
+            element={
+              <ProtectedRoute requireAdmin>
+                <AdminAdsPage />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/admin/negocios" 
+            element={
+              <ProtectedRoute requireAdmin>
+                <AdminBusinessesPage />
+              </ProtectedRoute>
+            } 
+          />
+          
           <Route path="*" element={<div className="text-center py-20">Página no encontrada</div>} />
         </Routes>
       </Layout>
