@@ -9,7 +9,7 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900 font-sans">
+        <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-gray-50 to-white text-gray-900 font-sans">
             <Navbar />
             <main className="flex-grow container mx-auto px-4 py-8">
                 <EnvWarning />

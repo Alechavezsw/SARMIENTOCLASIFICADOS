@@ -7,7 +7,7 @@ export const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     return (
-        <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-green-100 transition-all">
+        <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-green-100/50 shadow-sm transition-all">
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-center h-20">
                     {/* Logo */}

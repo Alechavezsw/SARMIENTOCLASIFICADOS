@@ -87,7 +87,7 @@ export const Home: React.FC = () => {
                             Sarmiento
                         </span>
                     </h1>
-                    <p className="text-lg md:text-xl text-indigo-100 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-lg md:text-xl text-green-50 max-w-2xl mx-auto leading-relaxed">
                         Conectamos a la comunidad. Compra, vende y encuentra oportunidades únicas cerca de ti de forma segura y rápida.
                     </p>
 
