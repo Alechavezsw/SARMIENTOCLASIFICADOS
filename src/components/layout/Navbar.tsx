@@ -137,16 +137,13 @@ export const Navbar: React.FC = () => {
                 </div>
 
                 {/* Mobile/Tablet Menu */}
-                <div 
-                    ref={menuRef}
-                    className={`lg:hidden fixed inset-0 top-24 sm:top-28 md:top-32 bg-white/98 backdrop-blur-xl z-40 overflow-y-auto transition-all duration-300 ${
-                        isMenuOpen 
-                            ? 'opacity-100 translate-y-0 pointer-events-auto' 
-                            : 'opacity-0 -translate-y-4 pointer-events-none'
-                    }`}
-                >
-                    <div className="pb-6 pt-4 border-t border-gray-100">
-                        <div className="flex flex-col space-y-3 font-medium px-4 sm:px-6">
+                {isMenuOpen && (
+                    <div 
+                        ref={menuRef}
+                        className="lg:hidden fixed inset-0 top-24 sm:top-28 md:top-32 bg-white/98 backdrop-blur-xl z-40 overflow-y-auto animate-in slide-in-from-top-2"
+                    >
+                        <div className="pb-6 pt-4 border-t border-gray-100">
+                            <div className="flex flex-col space-y-3 font-medium px-4 sm:px-6">
                             <input
                                 type="text"
                                 placeholder="¿Qué buscas hoy?"
@@ -220,9 +217,10 @@ export const Navbar: React.FC = () => {
                                 <User className="w-5 h-5" />
                                 Ingresar a mi cuenta
                             </Link>
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
             </div>
         </nav>
     );
