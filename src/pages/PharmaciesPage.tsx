@@ -190,7 +190,7 @@ export const PharmaciesPage: React.FC = () => {
                     </p>
                     <ul className="space-y-1 text-sm text-gray-700">
                         <li>• <strong>Emergencias:</strong> 911</li>
-                        <li>• <strong>Hospital:</strong> Consulta el hospital más cercano</li>
+                        <li>• <strong>Hospital:</strong> Hospital Ventura Lloveras</li>
                         <li>• <strong>Guardia:</strong> Verifica horarios de guardia en cada farmacia</li>
                     </ul>
                 </div>
