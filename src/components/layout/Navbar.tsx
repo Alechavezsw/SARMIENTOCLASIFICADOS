@@ -7,83 +7,94 @@ export const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     return (
-        <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-green-100/50 shadow-sm transition-all">
-            <div className="container mx-auto px-4 max-w-7xl">
-                <div className="flex justify-between items-center h-24 md:h-28">
+        <nav className="sticky top-0 z-50 bg-white/98 backdrop-blur-xl border-b border-green-100/60 shadow-md transition-all">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                <div className="flex justify-between items-center h-28 sm:h-32 md:h-36 lg:h-40">
                     {/* Logo */}
-                    <Link to="/" className="flex items-center group flex-shrink-0">
-                        <div className="flex items-center justify-center p-2 rounded-lg group-hover:bg-gray-50 transition-colors">
+                    <Link to="/" className="flex items-center group flex-shrink-0 min-w-0">
+                        <div className="flex items-center justify-center p-2 sm:p-3 rounded-xl group-hover:bg-green-50/50 transition-all duration-300">
                             <img 
                                 src={logo1} 
                                 alt="Sarmiento Clasificados" 
-                                className="h-20 md:h-28 lg:h-36 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                                className="h-24 sm:h-28 md:h-32 lg:h-40 xl:h-44 w-auto object-contain group-hover:scale-105 transition-transform duration-300 max-w-full"
                             />
                         </div>
                     </Link>
 
                     {/* Desktop Search & Nav */}
-                    <div className="hidden md:flex items-center space-x-4 lg:space-x-6 flex-1 justify-end ml-4">
-                        <Link to="/noticias" className="flex items-center gap-2 text-gray-700 hover:text-green-600 font-medium transition-colors px-3 py-2 whitespace-nowrap">
+                    <div className="hidden lg:flex items-center space-x-3 xl:space-x-5 flex-1 justify-end ml-6 min-w-0">
+                        <Link to="/noticias" className="flex items-center gap-2 text-gray-700 hover:text-green-600 font-semibold transition-colors px-3 xl:px-4 py-2.5 whitespace-nowrap text-sm xl:text-base hover:bg-green-50 rounded-lg">
                             <span>Noticias</span>
                         </Link>
                         
-                        <div className="max-w-md w-full relative">
+                        <Link to="/clima" className="flex items-center gap-2 text-gray-700 hover:text-green-600 font-semibold transition-colors px-3 xl:px-4 py-2.5 whitespace-nowrap text-sm xl:text-base hover:bg-green-50 rounded-lg">
+                            <span>Clima</span>
+                        </Link>
+                        
+                        <div className="max-w-xs xl:max-w-md w-full relative">
                             <input
                                 type="text"
                                 placeholder="Buscar en Sarmiento..."
-                                className="w-full pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full focus:bg-white focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition-all text-sm"
+                                className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-full focus:bg-white focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-all text-sm xl:text-base shadow-sm hover:shadow-md"
                             />
-                            <Search className="w-4 h-4 text-gray-400 absolute left-4 top-3.5" />
+                            <Search className="w-4 h-4 xl:w-5 xl:h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" />
                         </div>
 
-                        <div className="h-8 w-px bg-gray-200 mx-2"></div>
+                        <div className="h-10 w-px bg-gray-200 mx-1"></div>
 
-                        <Link to="/publicar" className="flex items-center gap-2 bg-green-50 text-green-700 px-5 py-2.5 rounded-full font-semibold hover:bg-green-100 transition-colors whitespace-nowrap">
+                        <Link to="/publicar" className="flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 text-white px-5 xl:px-6 py-3 rounded-full font-bold hover:from-green-700 hover:to-green-800 transition-all whitespace-nowrap text-sm xl:text-base shadow-lg shadow-green-500/30 hover:shadow-xl hover:shadow-green-500/40 transform hover:-translate-y-0.5">
                             <PlusCircle className="w-5 h-5" />
                             <span>Publicar</span>
                         </Link>
 
-                        <Link to="/login" className="flex items-center gap-2 text-gray-600 hover:text-green-600 font-medium transition-colors px-3 py-2 whitespace-nowrap">
+                        <Link to="/login" className="flex items-center gap-2 text-gray-700 hover:text-green-600 font-semibold transition-colors px-3 xl:px-4 py-2.5 whitespace-nowrap text-sm xl:text-base hover:bg-gray-50 rounded-lg">
                             <User className="w-5 h-5" />
-                            <span>Ingresar</span>
+                            <span className="hidden xl:inline">Ingresar</span>
                         </Link>
                     </div>
 
-                    {/* Mobile Menu Button */}
-                    <div className="md:hidden flex items-center gap-4">
-                        {/* Mobile Search Icon (optional simplified) */}
-                        <div className="md:hidden text-gray-500">
-                            <Search className="w-6 h-6" />
-                        </div>
+                    {/* Tablet/Mobile Menu Button */}
+                    <div className="lg:hidden flex items-center gap-3 sm:gap-4">
+                        {/* Search Icon for mobile */}
+                        <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
+                            <Search className="w-5 h-5 sm:w-6 sm:h-6" />
+                        </button>
 
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
                         >
-                            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                            {isMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
                         </button>
                     </div>
                 </div>
 
-                {/* Mobile Menu */}
+                {/* Mobile/Tablet Menu */}
                 {isMenuOpen && (
-                    <div className="md:hidden pb-6 pt-2 border-t border-gray-100 animate-in slide-in-from-top-2">
-                        <div className="flex flex-col space-y-4 font-medium px-2">
+                    <div className="lg:hidden pb-6 pt-4 border-t border-gray-100 animate-in slide-in-from-top-2 bg-white/98 backdrop-blur-xl">
+                        <div className="flex flex-col space-y-3 font-medium px-2">
                             <input
                                 type="text"
                                 placeholder="¿Qué buscas hoy?"
-                                className="w-full pl-4 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500/20 focus:border-green-500"
+                                className="w-full pl-4 pr-4 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500/30 focus:border-green-500 text-base shadow-sm"
                             />
                             <Link
                                 to="/noticias"
-                                className="flex items-center gap-3 text-gray-700 hover:bg-gray-50 p-3 rounded-xl"
+                                className="flex items-center gap-3 text-gray-700 hover:bg-green-50 p-3.5 rounded-xl font-semibold transition-colors"
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 Noticias
                             </Link>
                             <Link
+                                to="/clima"
+                                className="flex items-center gap-3 text-gray-700 hover:bg-green-50 p-3.5 rounded-xl font-semibold transition-colors"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Clima
+                            </Link>
+                            <Link
                                 to="/publicar"
-                                className="flex items-center gap-3 text-white bg-green-600 p-3 rounded-xl justify-center"
+                                className="flex items-center gap-3 text-white bg-gradient-to-r from-green-600 to-green-700 p-3.5 rounded-xl justify-center font-bold shadow-lg shadow-green-500/30"
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 <PlusCircle className="w-5 h-5" />
@@ -91,7 +102,7 @@ export const Navbar: React.FC = () => {
                             </Link>
                             <Link
                                 to="/login"
-                                className="flex items-center gap-3 text-gray-700 hover:bg-gray-50 p-3 rounded-xl"
+                                className="flex items-center gap-3 text-gray-700 hover:bg-gray-50 p-3.5 rounded-xl font-semibold transition-colors"
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 <User className="w-5 h-5" />

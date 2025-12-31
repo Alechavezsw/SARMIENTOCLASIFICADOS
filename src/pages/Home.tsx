@@ -113,22 +113,22 @@ export const Home: React.FC = () => {
 
             {/* Weather Section */}
             <section>
-                <div className="grid md:grid-cols-3 gap-6 mb-16">
+                <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
                     <div className="md:col-span-2">
                         <WeatherWidget city="Media Agua" />
                     </div>
-                    <div className="space-y-4">
+                    <div className="flex flex-col gap-4">
                         <Link 
                             to="/clima" 
-                            className="block bg-gradient-to-br from-green-600 to-teal-700 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all group"
+                            className="block bg-gradient-to-br from-green-600 via-green-700 to-teal-700 rounded-2xl p-6 lg:p-8 text-white shadow-xl hover:shadow-2xl transition-all group transform hover:-translate-y-1"
                         >
-                            <h3 className="text-xl font-bold mb-2">Clima en Sarmiento</h3>
-                            <p className="text-green-50 text-sm mb-4">
-                                Consulta el clima de todos los distritos
+                            <h3 className="text-xl lg:text-2xl font-bold mb-2">Clima en Sarmiento</h3>
+                            <p className="text-green-50 text-sm lg:text-base mb-4 leading-relaxed">
+                                Consulta el clima actualizado de todos los distritos del departamento
                             </p>
-                            <div className="flex items-center gap-2 text-sm font-semibold">
+                            <div className="flex items-center gap-2 text-sm lg:text-base font-bold bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg inline-flex">
                                 Ver todos los distritos
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 group-hover:translate-x-1 transition-transform" />
                             </div>
                         </Link>
                     </div>
