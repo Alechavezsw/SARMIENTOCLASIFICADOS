@@ -36,6 +36,7 @@ import {
 import { useCategories } from '../hooks/useCategories';
 import { useAds } from '../hooks/useAds';
 import { AdCard } from '../components/ads/AdCard';
+import { WeatherWidget } from '../components/WeatherWidget';
 
 // Mapa de iconos dinámico basado en los iconos de la base de datos
 const IconMap: Record<string, React.ElementType> = {
@@ -105,6 +106,30 @@ export const Home: React.FC = () => {
                         >
                             Publicar Gratis
                             <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* Weather Section */}
+            <section>
+                <div className="grid md:grid-cols-3 gap-6 mb-16">
+                    <div className="md:col-span-2">
+                        <WeatherWidget city="Media Agua" />
+                    </div>
+                    <div className="space-y-4">
+                        <Link 
+                            to="/clima" 
+                            className="block bg-gradient-to-br from-green-600 to-teal-700 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all group"
+                        >
+                            <h3 className="text-xl font-bold mb-2">Clima en Sarmiento</h3>
+                            <p className="text-green-50 text-sm mb-4">
+                                Consulta el clima de todos los distritos
+                            </p>
+                            <div className="flex items-center gap-2 text-sm font-semibold">
+                                Ver todos los distritos
+                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </div>
                         </Link>
                     </div>
                 </div>

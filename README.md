@@ -20,7 +20,19 @@ Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
 ```env
 VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
 VITE_SUPABASE_ANON_KEY=tu-clave-anon-key
+VITE_WEATHER_API_KEY=tu-api-key-de-openweathermap
 ```
+
+### API Key de OpenWeatherMap (Opcional)
+
+Para obtener datos de clima en tiempo real:
+
+1. Ve a [OpenWeatherMap](https://openweathermap.org/api)
+2. Crea una cuenta gratuita
+3. Obtén tu API Key
+4. Agrega `VITE_WEATHER_API_KEY` a tus variables de entorno
+
+**Nota**: Sin la API key, la aplicación mostrará datos de ejemplo del clima.
 
 ### Configuración de Supabase Storage
 
