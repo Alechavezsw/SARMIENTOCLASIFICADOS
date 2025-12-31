@@ -17,8 +17,9 @@ export class ErrorBoundary extends Component<Props, State> {
         this.state = { hasError: false, error: null };
     }
 
-    static getDerivedStateFromError(error: Error): State {
-        return { hasError: true, error };
+    static getDerivedStateFromError(error: Error | unknown): State {
+        const errorObj = error instanceof Error ? error : new Error(String(error));
+        return { hasError: true, error: errorObj };
     }
 
     componentDidCatch(error: Error, errorInfo: ErrorInfo) {
