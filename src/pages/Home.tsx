@@ -189,6 +189,72 @@ export const Home: React.FC = () => {
                 </div>
             </section>
 
+            {/* News Section */}
+            <section>
+                <div className="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 className="text-2xl font-bold text-gray-900">Últimas Noticias</h2>
+                        <p className="text-gray-500 mt-1">Mantente informado sobre Sarmiento</p>
+                    </div>
+                    <Link to="/noticias" className="hidden sm:flex items-center text-green-600 font-semibold hover:text-green-800 transition-colors">
+                        Ver todas <ArrowRight className="w-4 h-4 ml-1" />
+                    </Link>
+                </div>
+
+                <div className="grid md:grid-cols-3 gap-6">
+                    <div className="bg-gradient-to-br from-green-600 to-teal-700 rounded-2xl p-6 text-white hover:shadow-xl transition-all cursor-pointer group" onClick={() => window.open('https://www.swdiario.com.ar/', '_blank')}>
+                        <div className="space-y-3">
+                            <div className="text-sm font-medium text-green-100">SW Diario</div>
+                            <h3 className="text-lg font-bold line-clamp-2 group-hover:underline">
+                                Pagó $5 millones el abogado falso del municipio para no ir a la cárcel
+                            </h3>
+                            <p className="text-sm text-green-50 line-clamp-2">
+                                El funcionario municipal de Sarmiento Martín Fernández Monfort, denunciado por hacerse pasar por abogado...
+                            </p>
+                            <div className="flex items-center gap-2 text-sm font-semibold pt-2">
+                                Leer más <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg transition-all cursor-pointer group" onClick={() => window.open('https://www.swdiario.com.ar/', '_blank')}>
+                        <div className="space-y-3">
+                            <div className="text-sm font-medium text-gray-500">SW Diario</div>
+                            <h3 className="text-lg font-bold text-gray-900 line-clamp-2 group-hover:text-green-600 transition-colors">
+                                Recuperaron Motos robadas
+                            </h3>
+                            <p className="text-sm text-gray-600 line-clamp-2">
+                                La Sección Sustracción Automotores y Autopartes D-5 de la Policía de San Juan ha recuperado una...
+                            </p>
+                            <div className="flex items-center gap-2 text-sm font-semibold text-green-600 pt-2">
+                                Leer más <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg transition-all cursor-pointer group" onClick={() => window.open('https://www.swdiario.com.ar/', '_blank')}>
+                        <div className="space-y-3">
+                            <div className="text-sm font-medium text-gray-500">SW Diario</div>
+                            <h3 className="text-lg font-bold text-gray-900 line-clamp-2 group-hover:text-green-600 transition-colors">
+                                Horarios de colectivos en estas fiestas
+                            </h3>
+                            <p className="text-sm text-gray-600 line-clamp-2">
+                                Horarios Fiestas Red Tulum - Línea 262. Información actualizada sobre los horarios de transporte...
+                            </p>
+                            <div className="flex items-center gap-2 text-sm font-semibold text-green-600 pt-2">
+                                Leer más <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mt-6 text-center sm:hidden">
+                    <Link to="/noticias" className="inline-flex items-center text-green-600 font-semibold hover:text-green-800 transition-colors">
+                        Ver todas las noticias <ArrowRight className="w-4 h-4 ml-1" />
+                    </Link>
+                </div>
+            </section>
+
             {/* Trust/Info Section */}
             <section className="bg-gray-50 rounded-2xl p-8 md:p-12 border border-gray-100">
                 <div className="grid md:grid-cols-3 gap-8 text-center">

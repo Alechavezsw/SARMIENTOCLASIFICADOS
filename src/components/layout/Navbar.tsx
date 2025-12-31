@@ -8,21 +8,25 @@ export const Navbar: React.FC = () => {
 
     return (
         <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-green-100/50 shadow-sm transition-all">
-            <div className="container mx-auto px-4">
-                <div className="flex justify-between items-center h-20">
+            <div className="container mx-auto px-4 max-w-7xl">
+                <div className="flex justify-between items-center h-24 md:h-28">
                     {/* Logo */}
-                    <Link to="/" className="flex items-center group">
-                        <div className="flex items-center justify-center p-1 rounded-lg group-hover:bg-gray-50 transition-colors">
+                    <Link to="/" className="flex items-center group flex-shrink-0">
+                        <div className="flex items-center justify-center p-2 rounded-lg group-hover:bg-gray-50 transition-colors">
                             <img 
                                 src={logo1} 
                                 alt="Sarmiento Clasificados" 
-                                className="h-20 md:h-28 lg:h-32 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                                className="h-20 md:h-28 lg:h-36 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
                             />
                         </div>
                     </Link>
 
                     {/* Desktop Search & Nav */}
-                    <div className="hidden md:flex items-center space-x-6 flex-1 justify-end">
+                    <div className="hidden md:flex items-center space-x-4 lg:space-x-6 flex-1 justify-end ml-4">
+                        <Link to="/noticias" className="flex items-center gap-2 text-gray-700 hover:text-green-600 font-medium transition-colors px-3 py-2 whitespace-nowrap">
+                            <span>Noticias</span>
+                        </Link>
+                        
                         <div className="max-w-md w-full relative">
                             <input
                                 type="text"
@@ -34,12 +38,12 @@ export const Navbar: React.FC = () => {
 
                         <div className="h-8 w-px bg-gray-200 mx-2"></div>
 
-                        <Link to="/publicar" className="flex items-center gap-2 bg-green-50 text-green-700 px-5 py-2.5 rounded-full font-semibold hover:bg-green-100 transition-colors">
+                        <Link to="/publicar" className="flex items-center gap-2 bg-green-50 text-green-700 px-5 py-2.5 rounded-full font-semibold hover:bg-green-100 transition-colors whitespace-nowrap">
                             <PlusCircle className="w-5 h-5" />
                             <span>Publicar</span>
                         </Link>
 
-                        <Link to="/login" className="flex items-center gap-2 text-gray-600 hover:text-green-600 font-medium transition-colors px-3 py-2">
+                        <Link to="/login" className="flex items-center gap-2 text-gray-600 hover:text-green-600 font-medium transition-colors px-3 py-2 whitespace-nowrap">
                             <User className="w-5 h-5" />
                             <span>Ingresar</span>
                         </Link>
@@ -70,6 +74,13 @@ export const Navbar: React.FC = () => {
                                 placeholder="¿Qué buscas hoy?"
                                 className="w-full pl-4 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500/20 focus:border-green-500"
                             />
+                            <Link
+                                to="/noticias"
+                                className="flex items-center gap-3 text-gray-700 hover:bg-gray-50 p-3 rounded-xl"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Noticias
+                            </Link>
                             <Link
                                 to="/publicar"
                                 className="flex items-center gap-3 text-white bg-green-600 p-3 rounded-xl justify-center"

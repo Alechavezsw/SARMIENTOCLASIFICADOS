@@ -5,6 +5,7 @@ import { CategoryPage } from './pages/CategoryPage';
 import { AdDetailPage } from './pages/AdDetailPage';
 import { LoginPage } from './pages/LoginPage';
 import { PostAdPage } from './pages/PostAdPage';
+import { NewsPage } from './pages/NewsPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/anuncio/:id" element={<AdDetailPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/publicar" element={<PostAdPage />} />
+          <Route path="/noticias" element={<NewsPage />} />
           <Route path="*" element={<div className="text-center py-20">Página no encontrada</div>} />
         </Routes>
       </Layout>
