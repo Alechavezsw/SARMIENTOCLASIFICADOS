@@ -9,14 +9,14 @@ export const Navbar: React.FC = () => {
     return (
         <nav className="sticky top-0 z-50 bg-white/98 backdrop-blur-xl border-b border-green-100/60 shadow-md transition-all">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-                <div className="flex justify-between items-center h-28 sm:h-32 md:h-36 lg:h-40">
+                <div className="flex justify-between items-center h-24 sm:h-28 md:h-32 lg:h-36">
                     {/* Logo */}
                     <Link to="/" className="flex items-center group flex-shrink-0 min-w-0">
-                        <div className="flex items-center justify-center p-2 sm:p-3 rounded-xl group-hover:bg-green-50/50 transition-all duration-300">
+                        <div className="flex items-center justify-center p-1.5 sm:p-2 rounded-xl group-hover:bg-green-50/50 transition-all duration-300">
                             <img 
                                 src={logo1} 
                                 alt="Sarmiento Clasificados" 
-                                className="h-24 sm:h-28 md:h-32 lg:h-40 xl:h-44 w-auto object-contain group-hover:scale-105 transition-transform duration-300 max-w-full"
+                                className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain group-hover:scale-105 transition-transform duration-300 max-w-full"
                             />
                         </div>
                     </Link>
@@ -91,6 +91,13 @@ export const Navbar: React.FC = () => {
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 Clima
+                            </Link>
+                            <Link
+                                to="/colectivos"
+                                className="flex items-center gap-3 text-gray-700 hover:bg-green-50 p-3.5 rounded-xl font-semibold transition-colors"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Colectivos
                             </Link>
                             <Link
                                 to="/publicar"
