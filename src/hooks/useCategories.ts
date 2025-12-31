@@ -23,6 +23,8 @@ export const useCategories = () => {
             } catch (err: any) {
                 console.error('Error fetching categories:', err);
                 setError(err.message || 'Error al cargar categorías');
+                // En caso de error, mantener array vacío para que la app no se rompa
+                setCategories([]);
             } finally {
                 setLoading(false);
             }

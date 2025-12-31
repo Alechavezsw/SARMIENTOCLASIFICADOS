@@ -55,6 +55,8 @@ export const useAds = (categorySlug?: string) => {
             } catch (err: any) {
                 console.error('Error fetching ads:', err);
                 setError(err.message || 'Error al cargar anuncios');
+                // En caso de error, mantener array vacío para que la app no se rompa
+                setAds([]);
             } finally {
                 setLoading(false);
             }
