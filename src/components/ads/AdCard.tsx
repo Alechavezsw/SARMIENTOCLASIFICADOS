@@ -22,7 +22,7 @@ export const AdCard: React.FC<AdCardProps> = ({ ad }) => {
     };
 
     return (
-        <Link to={`/anuncio/${ad.id}`}>
+        <Link to={`/anuncio/${ad.id}`} className="h-full block">
             <Card hoverEffect className="p-0 overflow-hidden h-full flex flex-col group shadow-md hover:shadow-xl transition-all duration-300">
                 <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
                     <img

@@ -112,39 +112,35 @@ export const Home: React.FC = () => {
                 </div>
             </section>
 
-            {/* Weather & Radio Section */}
+            {/* Weather & Radio Section - Asymmetric Layout */}
             <section>
-                <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
-                    <div className="md:col-span-2">
+                <div className="grid md:grid-cols-12 gap-6 lg:gap-8 mb-16">
+                    {/* Weather - Takes 7 columns */}
+                    <div className="md:col-span-7">
                         <WeatherWidget city="Media Agua" />
                     </div>
-                    <div className="flex flex-col gap-4">
+                    {/* Radio - Takes 5 columns */}
+                    <div className="md:col-span-5 flex flex-col gap-4">
+                        <div className="mb-4">
+                            <h2 className="text-xl font-bold text-gray-900 mb-2">Radio SW</h2>
+                            <Link to="/radio" className="text-xs font-semibold text-purple-600 hover:text-purple-700 transition-colors">
+                                Ver más →
+                            </Link>
+                        </div>
+                        <RadioPlayer compact />
                         <Link 
                             to="/clima" 
-                            className="block bg-gradient-to-br from-green-600 via-green-700 to-teal-700 rounded-2xl p-6 lg:p-8 text-white shadow-xl hover:shadow-2xl transition-all group transform hover:-translate-y-1"
+                            className="block bg-gradient-to-br from-green-600 via-green-700 to-teal-700 rounded-2xl p-5 text-white shadow-xl hover:shadow-2xl transition-all group transform hover:-translate-y-1 h-full flex flex-col justify-center"
                         >
-                            <h3 className="text-xl lg:text-2xl font-bold mb-2">Clima en Sarmiento</h3>
-                            <p className="text-green-50 text-sm lg:text-base mb-4 leading-relaxed">
-                                Consulta el clima actualizado de todos los distritos del departamento
+                            <h3 className="text-lg font-bold mb-2">Clima en Sarmiento</h3>
+                            <p className="text-green-50 text-xs mb-3 leading-relaxed">
+                                Consulta el clima de todos los distritos
                             </p>
-                            <div className="flex items-center gap-2 text-sm lg:text-base font-bold bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg inline-flex">
-                                Ver todos los distritos
-                                <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 group-hover:translate-x-1 transition-transform" />
+                            <div className="flex items-center gap-2 text-xs font-bold bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-lg inline-flex">
+                                Ver todos
+                                <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                             </div>
                         </Link>
-                    </div>
-                </div>
-
-                {/* Radio Section */}
-                <div className="mb-16">
-                    <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-2xl font-bold text-gray-900">Radio SW</h2>
-                        <Link to="/radio" className="text-sm font-semibold text-purple-600 hover:text-purple-700 transition-colors">
-                            Ver más →
-                        </Link>
-                    </div>
-                    <div className="max-w-md mx-auto md:mx-0">
-                        <RadioPlayer compact />
                     </div>
                 </div>
             </section>
@@ -170,7 +166,7 @@ export const Home: React.FC = () => {
                                     to={`/categoria/${cat.slug}`}
                                     className={`
                                         group flex flex-col items-center justify-center p-6 rounded-2xl 
-                                        bg-white border border-gray-100 shadow-sm 
+                                        bg-white border border-gray-100 shadow-sm h-full
                                         hover:shadow-md hover:border-green-100 transition-all duration-300
                                     `}
                                 >
@@ -212,7 +208,9 @@ export const Home: React.FC = () => {
                 ) : ads.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {ads.slice(0, 4).map((ad) => (
-                            <AdCard key={ad.id} ad={ad} />
+                            <div key={ad.id} className="h-full">
+                                <AdCard ad={ad} />
+                            </div>
                         ))}
                     </div>
                 ) : (
@@ -323,4 +321,5 @@ export const Home: React.FC = () => {
         </div>
     );
 };
+
 
