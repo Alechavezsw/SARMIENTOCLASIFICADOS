@@ -1,9 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Search, MapPin, Navigation } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 type DayType = 'weekday' | 'saturday' | 'sunday';
 type TabType = 'terminal' | 'distritos' | 'distvuelta' | 'retorno';
+
+// Función para detectar el día actual
+const getCurrentDayType = (): DayType => {
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
+    
+    if (dayOfWeek === 0) return 'sunday'; // Domingo
+    if (dayOfWeek === 6) return 'saturday'; // Sábado
+    return 'weekday'; // Lunes a Viernes
+};
+
+// Función para convertir hora "HH:MM" a minutos desde medianoche
+const timeToMinutes = (time: string): number => {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 60 + minutes;
+};
+
+// Función para encontrar el próximo colectivo
+const getNextBusIndex = (schedules: BusSchedule[]): number | null => {
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    
+    for (let i = 0; i < schedules.length; i++) {
+        const busTime = timeToMinutes(schedules[i].time || '00:00');
+        if (busTime >= currentMinutes) {
+            return i;
+        }
+    }
+    return null; // No hay más colectivos hoy
+};
 
 interface BusSchedule {
     time: string;
@@ -24,11 +54,12 @@ interface BusSchedule {
 }
 
 export const BusSchedulePage: React.FC = () => {
-    const [currentDay, setCurrentDay] = useState<DayType>('weekday');
+    const [currentDay, setCurrentDay] = useState<DayType>(getCurrentDayType());
     const [activeTab, setActiveTab] = useState<TabType>('terminal');
     const [searchTerm, setSearchTerm] = useState('');
     const [showRouteModal, setShowRouteModal] = useState(false);
     const [showPlannerModal, setShowPlannerModal] = useState(false);
+    const [nextBusIndex, setNextBusIndex] = useState<number | null>(null);
 
     // Datos de horarios
     const dataTerminalWeekday: BusSchedule[] = [
@@ -375,6 +406,19 @@ export const BusSchedulePage: React.FC = () => {
         );
     });
 
+    // Actualizar el próximo colectivo cuando cambian los datos o la hora
+    useEffect(() => {
+        const updateNextBus = () => {
+            const nextIndex = getNextBusIndex(filteredData);
+            setNextBusIndex(nextIndex);
+        };
+        
+        updateNextBus();
+        // Actualizar cada minuto
+        const interval = setInterval(updateNextBus, 60000);
+        return () => clearInterval(interval);
+    }, [currentDay, activeTab, searchTerm]);
+
     const formatCell = (val?: string) => {
         if (!val || val === '--' || val === '-') return <span className="text-gray-300">-</span>;
         return val;
@@ -537,11 +581,21 @@ export const BusSchedulePage: React.FC = () => {
                                         </td>
                                     </tr>
                                 ) : (
-                                    filteredData.map((item, idx) => (
-                                        <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                                    filteredData.map((item, idx) => {
+                                        const isNextBus = nextBusIndex === idx;
+                                        return (
+                                        <tr key={idx} className={`border-b border-gray-100 hover:bg-gray-50 transition-colors ${isNextBus ? 'bg-yellow-50 border-l-4 border-l-red-600' : ''}`}>
                                             {activeTab === 'terminal' && (
                                                 <>
-                                                    <td className="px-4 py-3 font-bold text-red-600 text-lg">{item.time}</td>
+                                                    <td className="px-4 py-3 font-bold text-red-600 text-lg relative">
+                                                        {isNextBus && (
+                                                            <span className="absolute -left-2 top-1/2 -translate-y-1/2 w-3 h-3 bg-red-600 rounded-full animate-pulse"></span>
+                                                        )}
+                                                        {item.time}
+                                                        {isNextBus && (
+                                                            <span className="ml-2 text-xs font-normal text-red-600">● Próximo</span>
+                                                        )}
+                                                    </td>
                                                     <td className="px-4 py-3">
                                                         <span className="bg-gray-800 text-white px-3 py-1 rounded-lg font-bold text-sm">
                                                             {item.line}
@@ -565,7 +619,15 @@ export const BusSchedulePage: React.FC = () => {
                                             )}
                                             {activeTab === 'distritos' && (
                                                 <>
-                                                    <td className="px-4 py-3 font-bold text-red-600 text-lg">{item.time}</td>
+                                                    <td className="px-4 py-3 font-bold text-red-600 text-lg relative">
+                                                        {isNextBus && (
+                                                            <span className="absolute -left-2 top-1/2 -translate-y-1/2 w-3 h-3 bg-red-600 rounded-full animate-pulse"></span>
+                                                        )}
+                                                        {item.time}
+                                                        {isNextBus && (
+                                                            <span className="ml-2 text-xs font-normal text-red-600">● Próximo</span>
+                                                        )}
+                                                    </td>
                                                     <td className="px-4 py-3 font-bold">{item.dest}</td>
                                                     <td className="px-4 py-3">{formatCell(item.lb)}</td>
                                                     <td className="px-4 py-3">{formatCell(item.ped)}</td>
@@ -587,7 +649,15 @@ export const BusSchedulePage: React.FC = () => {
                                             )}
                                             {activeTab === 'distvuelta' && (
                                                 <>
-                                                    <td className="px-4 py-3 font-bold text-red-600 text-lg">{item.time}</td>
+                                                    <td className="px-4 py-3 font-bold text-red-600 text-lg relative">
+                                                        {isNextBus && (
+                                                            <span className="absolute -left-2 top-1/2 -translate-y-1/2 w-3 h-3 bg-red-600 rounded-full animate-pulse"></span>
+                                                        )}
+                                                        {item.time}
+                                                        {isNextBus && (
+                                                            <span className="ml-2 text-xs font-normal text-red-600">● Próximo</span>
+                                                        )}
+                                                    </td>
                                                     <td className="px-4 py-3 font-bold">{item.loc}</td>
                                                     <td className="px-4 py-3">{formatCell(item.berros)}</td>
                                                     <td className="px-4 py-3">{formatCell(item.canada)}</td>
@@ -608,7 +678,15 @@ export const BusSchedulePage: React.FC = () => {
                                             )}
                                             {activeTab === 'retorno' && (
                                                 <>
-                                                    <td className="px-4 py-3 font-bold text-red-600 text-lg">{item.time}</td>
+                                                    <td className="px-4 py-3 font-bold text-red-600 text-lg relative">
+                                                        {isNextBus && (
+                                                            <span className="absolute -left-2 top-1/2 -translate-y-1/2 w-3 h-3 bg-red-600 rounded-full animate-pulse"></span>
+                                                        )}
+                                                        {item.time}
+                                                        {isNextBus && (
+                                                            <span className="ml-2 text-xs font-normal text-red-600">● Próximo</span>
+                                                        )}
+                                                    </td>
                                                     <td className="px-4 py-3">{formatCell(item.cruce)}</td>
                                                     <td className="px-4 py-3">{formatCell(item.nota)}</td>
                                                     <td className="px-4 py-3">{formatCell(item.llegada)}</td>
@@ -627,7 +705,8 @@ export const BusSchedulePage: React.FC = () => {
                                                 </>
                                             )}
                                         </tr>
-                                    ))
+                                    );
+                                })
                                 )}
                             </tbody>
                         </table>
