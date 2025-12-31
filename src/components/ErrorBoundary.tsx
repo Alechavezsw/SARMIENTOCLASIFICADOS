@@ -28,6 +28,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
     render() {
         if (this.state.hasError) {
+            const errorMessage = this.state.error?.message || 'Ocurrió un error inesperado';
             return (
                 <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
                     <div className="max-w-md w-full bg-white rounded-2xl shadow-lg p-8 text-center">
@@ -37,10 +38,11 @@ export class ErrorBoundary extends Component<Props, State> {
                         <h1 className="text-2xl font-bold text-gray-900 mb-2">
                             Algo salió mal
                         </h1>
-                        <p className="text-gray-600 mb-6">
-                            {this.state.error?.message || 'Ocurrió un error inesperado'}
+                        <p className="text-gray-600 mb-6 break-words">
+                            {String(errorMessage)}
                         </p>
                         <button
+                            type="button"
                             onClick={() => {
                                 this.setState({ hasError: false, error: null });
                                 window.location.href = '/';
@@ -52,6 +54,10 @@ export class ErrorBoundary extends Component<Props, State> {
                     </div>
                 </div>
             );
+        }
+
+        if (!this.props.children) {
+            return null;
         }
 
         return this.props.children;

@@ -124,7 +124,7 @@ export const Home: React.FC = () => {
                 ) : (
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                         {categories.slice(0, 12).map((cat) => {
-                            const Icon = cat.icon ? IconMap[cat.icon] : Search;
+                            const IconComponent = (cat.icon && IconMap[cat.icon]) ? IconMap[cat.icon] : Search;
                             return (
                                 <Link
                                     key={cat.id}
@@ -141,7 +141,7 @@ export const Home: React.FC = () => {
                                         group-hover:scale-110 transition-transform duration-300
                                     `}>
                                         <div className={`p-3 rounded-full ${cat.color} bg-opacity-50`}>
-                                            <Icon className="w-6 h-6" />
+                                            <IconComponent className="w-6 h-6" />
                                         </div>
                                     </div>
                                     <span className="font-semibold text-gray-700 group-hover:text-indigo-600 transition-colors text-center text-sm">
